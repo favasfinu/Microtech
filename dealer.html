@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealer Locator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .map-container {
+            height: 500px;
+            margin-top: 20px;
+        }
+        .dealer-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .dealer-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .dealer-item:hover {
+            background: #f8f9fa;
+        }
+        .navbar-nav {
+            flex-direction: row;
+        }
+        .nav-link {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important;
+        }
+        .dropdown-menu {
+            width: 100%;
+            padding: 1rem;
+        }
+        .footer-container {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+        }
+        .footer-container h5 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .footer-container a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .footer-container a:hover {
+            text-decoration: underline;
+        }
+        .footer-buttons a {
+            color: white;
+            border: 1px solid white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .footer-buttons a:hover {
+            background-color: white;
+            color: #007bff;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .footer-social a {
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+        }
+        .footer-social a:hover {
+            color: #ccc;
+        }
+        .footer-buttons .btn {
+            color: white;
+            border: 1px solid white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+        .footer-buttons .btn:hover {
+            background-color: white;
+            color: #007bff;
+        }
+        body {
+            padding-top: 100px; /* Adjust padding-top to match the height of the fixed navbar */
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://iconape.com/wp-content/png_logo_vector/microtech-logo.png" width="80" height="80"
+                class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-black" href="#" id="productsDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        OUR PRODUCTS
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="productsDropdown">
+                        <a class="dropdown-item dropdown-item-header" href="#">Accessory</a>
+                        <a class="dropdown-item" href="#">ToughX Trolley</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item dropdown-item-header" href="#">Batteries</a>
+                        <a class="dropdown-item" href="#">Red Charge</a>
+                        <a class="dropdown-item" href="#">Inverlast</a>
+                        <a class="dropdown-item" href="#">Shakti Charge</a>
+                        <a class="dropdown-item" href="#">Neo Charge</a>
+                        <a class="dropdown-item" href="#">Power Charge</a>
+                        <a class="dropdown-item" href="#">Eco Charge</a>
+                        <a class="dropdown-item" href="#">InverGel</a>
+                        <a class="dropdown-item" href="#">Inverlast XL</a>
+                        <a class="dropdown-item" href="#">Lifemax</a>
+                        <a class="dropdown-item" href="#">Extra Charge</a>
+                        <a class="dropdown-item" href="#">Ultra Charge</a>
+                        <a class="dropdown-item" href="#">Boost Charge</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item dropdown-item-header" href="#">High Capacity Inverters</a>
+                        <a class="dropdown-item" href="#">iCruze</a>
+                        <a class="dropdown-item" href="#">Optimus HKVA</a>
+                        <a class="dropdown-item" href="#">Power Pro</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item dropdown-item-header" href="#">Home Inverters</a>
+                        <a class="dropdown-item" href="#">Li-ON Series</a>
+                        <a class="dropdown-item" href="#">Icon Series</a>
+                        <a class="dropdown-item" href="#">Zelio Series</a>
+                        <a class="dropdown-item" href="#">Optimus Series</a>
+                        <a class="dropdown-item" href="#">Shakti Charge Inverters</a>
+                        <a class="dropdown-item" href="#">Eco Watt Rapid</a>
+                        <a class="dropdown-item" href="#">Eco Watt NEO</a>
+                        <a class="dropdown-item" href="#">Eco Volt NEO</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="about.html">ABOUT US</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="WARRANTY.html">WARRANTY REGISTRATION</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="dealer.html">DEALER LOCATOR</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-black" href="contact.html">CONTACT</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="margin-top: 100px;"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 dealer-list">
+            <h3>Dealers</h3>
+            <div class="dealer-item" onclick="centerMap(40.712776, -74.005974)">
+                <h5>Dealer 1</h5>
+                <p>123 Main Street, New York, NY</p>
+            </div>
+            <div class="dealer-item" onclick="centerMap(34.052235, -118.243683)">
+                <h5>Dealer 2</h5>
+                <p>456 Elm Street, Los Angeles, CA</p>
+            </div>
+            <div class="dealer-item" onclick="centerMap(41.878113, -87.629799)">
+                <h5>Dealer 3</h5>
+                <p>789 Pine Street, Chicago, IL</p>
+            </div>
+            <!-- Add more dealers as needed -->
+        </div>
+        <div class="col-md-8">
+            <div id="map" class="map-container"></div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-container">
+    <div class="container text-center mb-4">
+        <p>Get in touch with us or find our store/service center closest to you.</p>
+        <div class="footer-buttons d-flex justify-content-center">
+            <a href="#" class="btn">STORES LOCATOR</a>
+            <a href="#" class="btn">SERVICE CENTERS</a>
+            <a href="#" class="btn">SHOP NOW</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>ABOUT MICROTEK</h5>
+                <a href="#">About Us</a>
+                <a href="#">Awards and Certifications</a>
+                <a href="#">Milestones</a>
+                <a href="#">Export</a>
+                <a href="#">Research and Development</a>
+                <a href="#">Corporate Social Responsibility</a>
+                <a href="#">Blogs</a>
+                <a href="#">E-Catalogues</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="col-md-3">
+                <h5>SHOP AND EXPLORE</h5>
+                <a href="#">Power Backup Solutions</a>
+                <a href="#">Voltage Stabilizers</a>
+                <a href="#">Solar Solutions</a>
+                <a href="#">Wires & Cables</a>
+                <a href="#">Circuit Protection Devices</a>
+                <a href="#">Health Care</a>
+                <a href="#">E-Vehicle Chargers</a>
+                <a href="#">Surge & Lightning Protectors</a>
+                <a href="#">Stores Locator</a>
+                <a href="#">Customer Registration</a>
+            </div>
+            <div class="col-md-3">
+                <h5>SERVICES</h5>
+                <a href="#">Product Registration</a>
+                <a href="#">AMC Registration</a>
+                <a href="#">Installation Request</a>
+                <a href="#">Complaint Registration</a>
+                <a href="#">Service Feedback</a>
+                <a href="#">Service Centers</a>
+                <a href="#">Cancellation & Refund Policy</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Term & Conditions</a>
+                <a href="#">Compliance Documents</a>
+            </div>
+            <div class="col-md-3">
+                <h5>CORPORATE OFFICE</h5>
+                <p>H-57, Udyog Nagar, Rohtak Road<br>Delhi-110041, 011-71255500</p>
+                <p>All India Customer Care<br>+91-7283838383</p>
+                <p>For any order related queries<br>please Missed call on: +91-9711666444</p>
+                <p>For service related queries, WhatsApp at<br>+91-8800255733</p>
+                <p>Email: <a href="mailto:ho@microtekdirect.com">ho@microtekdirect.com</a></p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>
+<script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 39.8283, lng: -98.5795},
+            zoom: 4
+        });
+
+        var locations = [
+            {lat: 40.712776, lng: -74.005974, name: 'Dealer 1'},
+            {lat: 34.052235, lng: -118.243683, name: 'Dealer 2'},
+            {lat: 41.878113, lng: -87.629799, name: 'Dealer 3'}
+        ];
+
+        locations.forEach(function(location) {
+            new google.maps.Marker({
+                position: {lat: location.lat, lng: location.lng},
+                map: map,
+                title: location.name
+            });
+        });
+    }
+
+    function centerMap(lat, lng) {
+        map.setCenter({lat: lat, lng: lng});
+        map.setZoom(12);
+    }
+
+    window.onload = function() {
+        initMap();
+    };
+</script>
+
+</body>
+</html>
